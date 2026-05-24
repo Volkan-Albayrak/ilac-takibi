@@ -12,193 +12,80 @@
       font-family: 'DM Sans', 'Segoe UI', sans-serif;
       color: #e2e8f0;
     }
-    @keyframes ripple {
-      0% { transform: scale(0.6); opacity: 1; }
-      100% { transform: scale(2.2); opacity: 0; }
-    }
-    @keyframes pop {
-      0% { transform: scale(1); }
-      40% { transform: scale(1.22); }
-      100% { transform: scale(1); }
-    }
-    .ripple-ring {
-      position: absolute; border-radius: 50%;
-      pointer-events: none;
-      animation: ripple 0.45s ease-out forwards;
-    }
-    .btn-pop { animation: pop 0.22s cubic-bezier(.34,1.56,.64,1); }
-    #banner-warn, #banner-ok, #sync-banner { display: none; }
-    #header {
-      background: rgba(255,255,255,0.04);
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-      padding: 20px 20px 0;
-      backdrop-filter: blur(12px);
-    }
-    .header-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
-    .title { font-size: 21px; font-weight: 700; letter-spacing: -0.5px; }
-    .subtitle { font-size: 11px; color: #64748b; margin-top: 2px; }
-    .week6-badge {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 10px; padding: 6px 12px;
-      font-size: 11px; font-weight: 600;
-    }
-    .sync-indicator {
-      display: flex; align-items: center; gap: 6px;
-      font-size: 10px; color: #64748b; margin-top: 4px;
-    }
-    .sync-dot {
-      width: 6px; height: 6px; border-radius: 50%;
-      background: #64748b;
-    }
-    .sync-dot.ok { background: #22c55e; }
-    .sync-dot.saving { background: #f59e0b; animation: pulse 1s infinite; }
-    .sync-dot.error { background: #ef4444; }
+    @keyframes ripple { 0%{transform:scale(0.6);opacity:1} 100%{transform:scale(2.2);opacity:0} }
+    @keyframes pop { 0%{transform:scale(1)} 40%{transform:scale(1.22)} 100%{transform:scale(1)} }
+    @keyframes spin { to{transform:rotate(360deg)} }
     @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
-    .view-toggle { display: flex; gap: 8px; margin-bottom: 14px; }
-    .view-btn {
-      background: transparent;
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 8px; padding: 6px 14px;
-      color: #64748b; font-size: 12px; font-weight: 600; cursor: pointer;
-      transition: all 0.15s;
-    }
-    .view-btn.active {
-      background: rgba(99,102,241,0.3);
-      border-color: rgba(99,102,241,0.6);
-      color: #a5b4fc;
-    }
-    .day-tabs { display: flex; gap: 3px; overflow-x: auto; padding-bottom: 1px; }
-    .day-tab {
-      flex-shrink: 0;
-      background: transparent; border: 1px solid transparent;
-      border-bottom: 2px solid transparent;
-      border-radius: 10px 10px 0 0;
-      padding: 8px 12px; cursor: pointer;
-      display: flex; flex-direction: column; align-items: center; gap: 4px;
-    }
-    .day-tab.active { background: rgba(99,102,241,0.25); border-color: rgba(99,102,241,0.5); border-bottom-color: rgba(99,102,241,0.4); }
-    .day-tab.today { border-bottom-color: #6366f1 !important; }
-    .day-tab span { font-size: 11px; font-weight: 500; color: #64748b; }
-    .day-tab.active span { color: #c4b5fd; }
-    .day-tab.today span { color: #a5b4fc; font-weight: 700; }
-    .tab-bar { width: 26px; height: 3px; border-radius: 2px; background: rgba(255,255,255,0.1); overflow: hidden; }
-    .tab-bar-fill { height: 100%; border-radius: 2px; background: #6366f1; transition: width 0.3s; }
-    .tab-bar-fill.complete { background: #22c55e; }
-    #content { padding: 18px 20px; }
-    .day-summary {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 16px; padding: 14px 18px;
-      margin-bottom: 18px;
-      display: flex; align-items: center; justify-content: space-between;
-    }
-    .day-summary-label { font-size: 12px; color: #94a3b8; margin-bottom: 3px; }
-    .day-summary-count { font-size: 19px; font-weight: 700; }
-    .day-summary-count span { font-size: 12px; color: #64748b; font-weight: 400; }
-    .circle-wrap { width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
-    .circle-inner {
-      width: 34px; height: 34px; border-radius: 50%;
-      background: #1a1a3e;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 10px; font-weight: 700; color: #a5b4fc;
-    }
-    .med-card {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 16px; overflow: hidden;
-      margin-bottom: 14px;
-    }
-    .med-card-header {
-      display: flex; align-items: flex-start; gap: 10;
-      padding: 12px 16px;
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-    }
-    .med-card-name { font-weight: 700; font-size: 14px; }
-    .med-card-note { font-size: 10px; margin-top: 2px; }
-    .med-table { width: 100%; border-collapse: collapse; min-width: 300px; }
-    .med-table th, .med-table td { text-align: center; padding: 5px 3px; font-size: 10px; color: #475569; }
-    .med-table td:first-child { text-align: left; padding-left: 12px; color: #334155; width: 50px; }
-    .taken-wrap { position: relative; display: inline-flex; align-items: center; justify-content: center; }
-    .taken-btn {
-      width: 30px; height: 30px; border-radius: 8px; border: none;
-      background: transparent;
-      cursor: pointer;
-      display: inline-flex; align-items: center; justify-content: center;
-      font-size: 14px; color: rgba(255,255,255,0.3);
-      transition: all 0.18s cubic-bezier(.34,1.56,.64,1);
-      position: relative;
-    }
-    .taken-btn.taken { color: #fff; border: none !important; }
-    .inactive-cell {
-      width: 30px; height: 30px; border-radius: 8px;
-      display: inline-flex; align-items: center; justify-content: center;
-      font-size: 12px; color: #2d3748;
-    }
-    .day-row {
-      border-radius: 14px; padding: 14px 16px;
-      display: flex; align-items: center; gap: 12px;
-      margin-bottom: 10px;
-      border: 1px solid rgba(255,255,255,0.09);
-      background: rgba(255,255,255,0.05);
-      transition: all 0.25s ease;
-    }
-    .day-row.inactive { opacity: 0.45; background: rgba(255,255,255,0.02); border-color: rgba(255,255,255,0.04); }
-    .day-row-name { font-weight: 600; font-size: 14px; color: #e2e8f0; }
-    .day-row.inactive .day-row-name { color: #64748b; }
-    .day-row-meta { display: flex; align-items: center; gap: 6px; margin-top: 3px; }
-    .dose-badge { border-radius: 6px; padding: 2px 8px; font-weight: 700; font-size: 10px; }
-    .dose-note { font-size: 10px; color: #475569; }
-    .dose-note.taken-note { color: #6ee7b7; font-weight: 600; }
-    .day-btn-wrap { position: relative; flex-shrink: 0; }
-    .day-btn {
-      width: 44px; height: 44px; border-radius: 13px; border: none;
-      background: rgba(255,255,255,0.08);
-      cursor: pointer; color: #4a5568;
-      transition: all 0.2s cubic-bezier(.34,1.56,.64,1);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 20px;
-    }
-    .day-btn.taken { color: #fff; }
-    .day-inactive-placeholder { width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; color: #2d3748; font-size: 18px; }
-    .info-card {
-      margin-top: 20px;
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 14px; padding: 14px 16px;
-    }
-    .info-label { font-size: 11px; color: #475569; margin-bottom: 10px; font-weight: 600; letter-spacing: 0.5px; }
-    .info-row { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 6px; font-size: 11px; }
-    .info-row-key { font-weight: 700; }
-    .info-row-val { color: #64748b; }
-    .banner {
-      padding: 12px 20px;
-      display: flex; align-items: center; gap: 10px;
-    }
-    .banner-close { background: none; border: none; font-size: 18px; cursor: pointer; padding: 0 4px; margin-left: auto; }
-    #loading-screen {
-      position: fixed; inset: 0;
-      background: linear-gradient(135deg, #0f0c29 0%, #1a1a3e 50%, #24243e 100%);
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      gap: 16px; z-index: 999;
-    }
-    .loading-spinner {
-      width: 36px; height: 36px; border-radius: 50%;
-      border: 3px solid rgba(255,255,255,0.1);
-      border-top-color: #6366f1;
-      animation: spin 0.8s linear infinite;
-    }
-    @keyframes spin { to { transform: rotate(360deg); } }
+    .ripple-ring { position:absolute;border-radius:50%;pointer-events:none;animation:ripple 0.45s ease-out forwards; }
+    #banner-warn,#banner-ok { display:none; }
+    #header { background:rgba(255,255,255,0.04);border-bottom:1px solid rgba(255,255,255,0.08);padding:20px 20px 0;backdrop-filter:blur(12px); }
+    .header-top { display:flex;align-items:center;justify-content:space-between;margin-bottom:16px; }
+    .title { font-size:21px;font-weight:700;letter-spacing:-0.5px; }
+    .subtitle { font-size:11px;color:#64748b;margin-top:2px; }
+    .sync-row { display:flex;align-items:center;gap:6px;margin-top:4px; }
+    .sync-dot { width:7px;height:7px;border-radius:50%;background:#64748b;flex-shrink:0; }
+    .sync-dot.ok { background:#22c55e; }
+    .sync-dot.saving { background:#f59e0b;animation:pulse 0.8s infinite; }
+    .sync-dot.error { background:#ef4444; }
+    .sync-text { font-size:10px;color:#64748b; }
+    .week6-badge { background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:6px 12px;font-size:11px;font-weight:600; }
+    .view-toggle { display:flex;gap:8px;margin-bottom:14px; }
+    .view-btn { background:transparent;border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:6px 14px;color:#64748b;font-size:12px;font-weight:600;cursor:pointer;transition:all 0.15s; }
+    .view-btn.active { background:rgba(99,102,241,0.3);border-color:rgba(99,102,241,0.6);color:#a5b4fc; }
+    .day-tabs { display:flex;gap:3px;overflow-x:auto;padding-bottom:1px; }
+    .day-tab { flex-shrink:0;background:transparent;border:1px solid transparent;border-bottom:2px solid transparent;border-radius:10px 10px 0 0;padding:8px 12px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:4px; }
+    .day-tab.active { background:rgba(99,102,241,0.25);border-color:rgba(99,102,241,0.5);border-bottom-color:rgba(99,102,241,0.4); }
+    .day-tab.today { border-bottom-color:#6366f1 !important; }
+    .day-tab span { font-size:11px;font-weight:500;color:#64748b; }
+    .day-tab.active span { color:#c4b5fd; }
+    .day-tab.today span { color:#a5b4fc;font-weight:700; }
+    .tab-bar { width:26px;height:3px;border-radius:2px;background:rgba(255,255,255,0.1);overflow:hidden; }
+    .tab-bar-fill { height:100%;border-radius:2px;background:#6366f1;transition:width 0.3s; }
+    .tab-bar-fill.complete { background:#22c55e; }
+    #content { padding:18px 20px; }
+    .day-summary { background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:14px 18px;margin-bottom:18px;display:flex;align-items:center;justify-content:space-between; }
+    .day-summary-label { font-size:12px;color:#94a3b8;margin-bottom:3px; }
+    .day-summary-count { font-size:19px;font-weight:700; }
+    .day-summary-count span { font-size:12px;color:#64748b;font-weight:400; }
+    .circle-wrap { width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center; }
+    .circle-inner { width:34px;height:34px;border-radius:50%;background:#1a1a3e;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#a5b4fc; }
+    .med-card { background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:16px;overflow:hidden;margin-bottom:14px; }
+    .med-card-header { display:flex;align-items:flex-start;gap:10px;padding:12px 16px;border-bottom:1px solid rgba(255,255,255,0.06); }
+    .med-card-name { font-weight:700;font-size:14px; }
+    .med-card-note { font-size:10px;margin-top:2px; }
+    .med-table { width:100%;border-collapse:collapse;min-width:300px; }
+    .med-table th,.med-table td { text-align:center;padding:5px 3px;font-size:10px;color:#475569; }
+    .med-table td:first-child { text-align:left;padding-left:12px;color:#334155;width:50px; }
+    .taken-wrap { position:relative;display:inline-flex;align-items:center;justify-content:center; }
+    .taken-btn { width:30px;height:30px;border-radius:8px;border:none;background:transparent;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-size:14px;transition:all 0.18s cubic-bezier(.34,1.56,.64,1);position:relative; }
+    .taken-btn.taken { color:#fff;border:none !important; }
+    .inactive-cell { width:30px;height:30px;border-radius:8px;display:inline-flex;align-items:center;justify-content:center;font-size:12px;color:#2d3748; }
+    .day-row { border-radius:14px;padding:14px 16px;display:flex;align-items:center;gap:12px;margin-bottom:10px;transition:all 0.25s ease; }
+    .day-row-name { font-weight:600;font-size:14px; }
+    .day-row-meta { display:flex;align-items:center;gap:6px;margin-top:3px; }
+    .dose-badge { border-radius:6px;padding:2px 8px;font-weight:700;font-size:10px; }
+    .dose-note { font-size:10px;color:#475569; }
+    .dose-note.taken-note { color:#6ee7b7;font-weight:600; }
+    .day-btn-wrap { position:relative;flex-shrink:0; }
+    .day-btn { width:44px;height:44px;border-radius:13px;border:none;background:rgba(255,255,255,0.08);cursor:pointer;color:#4a5568;transition:all 0.2s cubic-bezier(.34,1.56,.64,1);display:flex;align-items:center;justify-content:center;font-size:20px; }
+    .day-btn.taken { color:#fff; }
+    .day-inactive-ph { width:44px;height:44px;display:flex;align-items:center;justify-content:center;color:#2d3748;font-size:18px; }
+    .info-card { margin-top:20px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:14px;padding:14px 16px; }
+    .info-label { font-size:11px;color:#475569;margin-bottom:10px;font-weight:600;letter-spacing:0.5px; }
+    .info-row { display:flex;gap:10px;align-items:flex-start;margin-bottom:6px;font-size:11px; }
+    .banner { padding:12px 20px;display:flex;align-items:center;gap:10px; }
+    .banner-close { background:none;border:none;font-size:18px;cursor:pointer;padding:0 4px;margin-left:auto; }
+    #loading-screen { position:fixed;inset:0;background:linear-gradient(135deg,#0f0c29 0%,#1a1a3e 50%,#24243e 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;z-index:999; }
+    .spinner { width:36px;height:36px;border-radius:50%;border:3px solid rgba(255,255,255,0.1);border-top-color:#6366f1;animation:spin 0.8s linear infinite; }
   </style>
 </head>
 <body>
 
 <div id="loading-screen">
-  <div class="loading-spinner"></div>
+  <div class="spinner"></div>
   <div style="font-size:13px;color:#64748b">Veriler yükleniyor...</div>
 </div>
 
-<!-- Banners -->
 <div id="banner-warn" class="banner" style="background:linear-gradient(135deg,#92400e,#78350f);border-bottom:1px solid #d97706;">
   <span style="font-size:18px">⚠️</span>
   <div style="flex:1">
@@ -216,15 +103,14 @@
   <button class="banner-close" style="color:#6ee7b7" onclick="closeBanner('banner-ok')">×</button>
 </div>
 
-<!-- Header -->
 <div id="header">
   <div class="header-top">
     <div>
       <div class="title">💊 İlaç Takibi</div>
       <div class="subtitle">Başlangıç: 24 Mayıs 2026</div>
-      <div class="sync-indicator">
+      <div class="sync-row">
         <div class="sync-dot" id="sync-dot"></div>
-        <span id="sync-text">Yükleniyor...</span>
+        <span class="sync-text" id="sync-text">Yükleniyor...</span>
       </div>
     </div>
     <div class="week6-badge" id="week6-badge"></div>
@@ -252,40 +138,34 @@
 </div>
 
 <script>
-  // ── CONFIG ──────────────────────────────────────────────
-  const GITHUB_TOKEN  = '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';
-  const GITHUB_OWNER  = 'volkan-albayrak';
-  const GITHUB_REPO   = 'ilac-takibi';
-  const DATA_FILE     = 'data.json';
-  const API_BASE      = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${DATA_FILE}`;
+  // ── SUPABASE CONFIG ─────────────────────────────────────
+  const SB_URL  = 'https://ewvkbzrbmahrogyvhpyj.supabase.co';
+  const SB_KEY  = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV3dmtienJibWFocm9neXZocHlqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk1NzkwOTksImV4cCI6MjA5NTE1NTA5OX0.FJaiRSJFjPRi7guvvqFf2lKVgNpS-Fc5NOz6kt-TNyY';
+  const HEADERS = { 'apikey': SB_KEY, 'Authorization': 'Bearer ' + SB_KEY, 'Content-Type': 'application/json', 'Prefer': 'resolution=merge-duplicates' };
+  const TABLE   = SB_URL + '/rest/v1/ilac_data';
 
   // ── CONSTANTS ───────────────────────────────────────────
-  const DAYS      = ["Pzt","Sal","Çar","Per","Cum","Cmt","Paz"];
-  const FULL_DAYS = ["Pazartesi","Salı","Çarşamba","Perşembe","Cuma","Cumartesi","Pazar"];
-  const FOLIK_DAYS = [6, 3]; // Paz=6, Per=3
-  const WEEK6_END_STR = "2026-07-05";
+  const DAYS       = ['Pzt','Sal','Çar','Per','Cum','Cmt','Paz'];
+  const FULL_DAYS  = ['Pazartesi','Salı','Çarşamba','Perşembe','Cuma','Cumartesi','Pazar'];
+  const FOLIK_DAYS = [6, 3];
+  const WEEK6_END  = '2026-07-05';
 
   // ── STATE ───────────────────────────────────────────────
-  let taken    = {};   // { "dv_2026-05-24": true, ... }
-  let banners  = {};
-  let fileSha  = null; // GitHub file SHA for updates
+  let taken   = {};
+  let banners = {};
   let saveTimer = null;
 
   // ── DATE HELPERS ────────────────────────────────────────
   function getWeekStart() {
     const now = new Date(); now.setHours(0,0,0,0);
     const day = now.getDay();
-    const diff = day === 0 ? -6 : 1 - day;
-    const mon = new Date(now); mon.setDate(now.getDate() + diff);
+    const mon = new Date(now);
+    mon.setDate(now.getDate() + (day === 0 ? -6 : 1 - day));
     return mon;
   }
   const weekStart = getWeekStart();
-
-  function getDateForDayIdx(di) {
-    const d = new Date(weekStart); d.setDate(weekStart.getDate() + di); return d;
-  }
-  function getDateStr(di) {
-    const d = getDateForDayIdx(di);
+  function dateStr(di) {
+    const d = new Date(weekStart); d.setDate(weekStart.getDate() + di);
     return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
   }
   function todayStr() {
@@ -293,190 +173,155 @@
     return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
   }
 
-  const today      = new Date();
-  const todayIdx   = today.getDay() === 0 ? 6 : today.getDay() - 1;
-  const after6weeks = todayStr() > WEEK6_END_STR;
-  const daysLeft   = Math.ceil((new Date(WEEK6_END_STR) - new Date(todayStr())) / (1000*60*60*24));
-  const dvDose     = after6weeks ? "1 puf" : "3 puf";
-
-  let activeDay    = todayIdx;
-  let currentView  = "week";
+  const todayIdx    = new Date().getDay() === 0 ? 6 : new Date().getDay() - 1;
+  const after6weeks = todayStr() > WEEK6_END;
+  const daysLeft    = Math.ceil((new Date(WEEK6_END) - new Date(todayStr())) / 86400000);
+  const dvDose      = after6weeks ? '1 puf' : '3 puf';
+  let activeDay     = todayIdx;
+  let currentView   = 'week';
 
   // ── ACTIVE CHECKS ───────────────────────────────────────
-  function isDvActive(di)    { return getDateStr(di) >= "2026-05-24"; }
-  function isFolikActive(di) {
-    if (getDateStr(di) < "2026-05-24") return false;
-    return FOLIK_DAYS.includes(di);
-  }
+  function isDvActive(di)    { return dateStr(di) >= '2026-05-24'; }
+  function isFolikActive(di) { return dateStr(di) >= '2026-05-24' && FOLIK_DAYS.includes(di); }
 
   // ── TAKEN ───────────────────────────────────────────────
-  function isTaken(medId, di) { return !!taken[medId + "_" + getDateStr(di)]; }
+  function isTaken(med, di)  { return !!taken[med + '_' + dateStr(di)]; }
 
-  function toggleTaken(medId, di) {
-    const k = medId + "_" + getDateStr(di);
+  function toggleTaken(med, di) {
+    const k = med + '_' + dateStr(di);
     taken[k] = !taken[k];
     render();
     scheduleSave();
   }
 
-  // ── GITHUB SYNC ─────────────────────────────────────────
-  function setSyncStatus(status, text) {
-    const dot = document.getElementById('sync-dot');
-    const txt = document.getElementById('sync-text');
-    dot.className = 'sync-dot ' + status;
-    txt.textContent = text;
+  // ── SYNC STATUS ─────────────────────────────────────────
+  function syncStatus(status, text) {
+    document.getElementById('sync-dot').className = 'sync-dot ' + status;
+    document.getElementById('sync-text').textContent = text;
   }
 
-  async function loadFromGitHub() {
+  // ── SUPABASE LOAD ───────────────────────────────────────
+  async function loadData() {
     try {
-      const res = await fetch(API_BASE, {
-        headers: {
-          'Authorization': 'token ' + GITHUB_TOKEN,
-          'Accept': 'application/vnd.github.v3+json'
-        }
+      const res = await fetch(TABLE + '?select=key,value', { headers: HEADERS });
+      if (!res.ok) throw new Error(res.status);
+      const rows = await res.json();
+      rows.forEach(r => {
+        if (r.key === 'taken')   taken   = JSON.parse(r.value || '{}');
+        if (r.key === 'banners') banners = JSON.parse(r.value || '{}');
       });
-      if (res.status === 404) {
-        // File doesn't exist yet, start fresh
-        fileSha = null;
-        setSyncStatus('ok', 'Hazır (yeni)');
-        return;
-      }
-      if (!res.ok) throw new Error('HTTP ' + res.status);
-      const json = await res.json();
-      fileSha = json.sha;
-      const decoded = JSON.parse(atob(json.content.replace(/\n/g,'')));
-      taken   = decoded.taken   || {};
-      banners = decoded.banners || {};
-      setSyncStatus('ok', 'Senkronize ✓');
+      syncStatus('ok', 'Senkronize ✓');
     } catch(e) {
-      console.error('Load error:', e);
-      setSyncStatus('error', 'Yükleme hatası');
+      syncStatus('error', 'Bağlantı hatası');
+      console.error(e);
     }
   }
 
+  // ── SUPABASE SAVE ───────────────────────────────────────
   function scheduleSave() {
-    setSyncStatus('saving', 'Kaydediliyor...');
+    syncStatus('saving', 'Kaydediliyor...');
     if (saveTimer) clearTimeout(saveTimer);
-    saveTimer = setTimeout(saveToGitHub, 1200);
+    saveTimer = setTimeout(saveData, 800);
   }
 
-  async function saveToGitHub() {
+  async function saveData() {
     try {
-      const payload = { taken, banners };
-      const content = btoa(unescape(encodeURIComponent(JSON.stringify(payload, null, 2))));
-      const body = {
-        message: 'İlaç takibi güncellendi',
-        content: content,
-      };
-      if (fileSha) body.sha = fileSha;
-
-      const res = await fetch(API_BASE, {
-        method: 'PUT',
-        headers: {
-          'Authorization': 'token ' + GITHUB_TOKEN,
-          'Accept': 'application/vnd.github.v3+json',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(body)
+      const rows = [
+        { key: 'taken',   value: JSON.stringify(taken) },
+        { key: 'banners', value: JSON.stringify(banners) },
+      ];
+      const res = await fetch(TABLE, {
+        method: 'POST',
+        headers: { ...HEADERS, 'Prefer': 'resolution=merge-duplicates,return=minimal' },
+        body: JSON.stringify(rows)
       });
-      if (!res.ok) throw new Error('HTTP ' + res.status);
-      const json = await res.json();
-      fileSha = json.content.sha;
-      setSyncStatus('ok', 'Kaydedildi ✓');
+      if (!res.ok) throw new Error(res.status);
+      syncStatus('ok', 'Kaydedildi ✓');
     } catch(e) {
-      console.error('Save error:', e);
-      setSyncStatus('error', 'Kayıt hatası — tekrar deneyin');
+      syncStatus('error', 'Kayıt hatası!');
+      console.error(e);
     }
   }
 
   // ── BANNER ──────────────────────────────────────────────
-  function closeBanner(id) {
+  window.closeBanner = function(id) {
     document.getElementById(id).style.display = 'none';
-    banners[id] = true;
-    scheduleSave();
-  }
+    banners[id] = true; scheduleSave();
+  };
   function renderBanners() {
     if (!banners['banner-warn'] && !after6weeks && daysLeft <= 7) {
       document.getElementById('banner-warn').style.display = 'flex';
-      document.getElementById('warn-text').textContent = daysLeft + ' gün sonra dozu 3 puf → 1 puf\'a düşürmeyi unutma.';
+      document.getElementById('warn-text').textContent = daysLeft + ' gün sonra dozu 3 puf → 1 puf\'a düşür.';
     }
     if (!banners['banner-ok'] && after6weeks) {
       document.getElementById('banner-ok').style.display = 'flex';
     }
   }
 
-  // ── TOTAL FOR DAY ────────────────────────────────────────
+  // ── TOTAL ───────────────────────────────────────────────
   function totalForDay(di) {
-    let total = 0, done = 0;
-    if (isDvActive(di))    { total++; if (isTaken('dv', di))    done++; }
-    if (isFolikActive(di)) { total++; if (isTaken('folik', di)) done++; }
+    let total=0, done=0;
+    if (isDvActive(di))    { total++; if (isTaken('dv',di))    done++; }
+    if (isFolikActive(di)) { total++; if (isTaken('folik',di)) done++; }
     return { total, done };
   }
 
   // ── RIPPLE ───────────────────────────────────────────────
-  function doRipple(wrapId, color, size) {
-    const wrap = document.getElementById(wrapId);
-    if (!wrap) return;
+  function doRipple(id, color, size) {
+    const el = document.getElementById(id); if (!el) return;
     const r = document.createElement('div');
     r.className = 'ripple-ring';
     r.style.cssText = `inset:-${size||6}px;border:2px solid ${color};`;
-    wrap.appendChild(r);
-    setTimeout(() => r.remove(), 500);
+    el.appendChild(r); setTimeout(() => r.remove(), 500);
   }
 
   // ── CLICK HANDLERS ───────────────────────────────────────
-  window.handleTakenClick = function(medId, di, color) {
-    const wasTaken = isTaken(medId, di);
-    toggleTaken(medId, di);
-    if (!wasTaken) setTimeout(() => doRipple('tw_'+medId+'_'+di, color, 6), 10);
+  window.handleTakenClick = function(med, di, color) {
+    const was = isTaken(med, di);
+    toggleTaken(med, di);
+    if (!was) setTimeout(() => doRipple('tw_'+med+'_'+di, color, 6), 10);
   };
-  window.handleDayClick = function(medId, di, color) {
-    const wasTaken = isTaken(medId, di);
-    toggleTaken(medId, di);
-    if (!wasTaken) setTimeout(() => doRipple('dw_'+medId, color, 10), 10);
+  window.handleDayClick = function(med, di, color) {
+    const was = isTaken(med, di);
+    toggleTaken(med, di);
+    if (!was) setTimeout(() => doRipple('dw_'+med, color, 10), 10);
   };
 
   // ── WEEK VIEW ────────────────────────────────────────────
-  function makeTakenBtn(medId, di, color) {
-    const t = isTaken(medId, di);
-    return `<div class="taken-wrap" id="tw_${medId}_${di}">
+  function makeTakenBtn(med, di, color) {
+    const t = isTaken(med, di);
+    return `<div class="taken-wrap" id="tw_${med}_${di}">
       <button class="taken-btn${t?' taken':''}"
-        style="${t ? `background:${color};box-shadow:0 2px 10px ${color}66;` : `border:1.5px solid ${color}66;color:${color}99;`}"
-        onclick="handleTakenClick('${medId}',${di},'${color}')">✓</button>
-    </div>`;
+        style="${t?`background:${color};box-shadow:0 2px 10px ${color}66;`:`border:1.5px solid ${color}66;color:${color}99;`}"
+        onclick="handleTakenClick('${med}',${di},'${color}')">✓</button></div>`;
   }
 
   function renderWeekView() {
     const meds = [
       { id:'dv',    name:'D Vitamini', emoji:'☀️', color:'#eab308',
-        note: after6weeks ? 'Günde 1 puf' : `Günde 3 puf (6. haftaya ${daysLeft}g kaldı)`,
-        noteColor: after6weeks ? '#6ee7b7' : '#fcd34d', isActive: isDvActive },
+        note: after6weeks?'Günde 1 puf':`Günde 3 puf (6. haftaya ${daysLeft}g kaldı)`,
+        noteColor: after6weeks?'#6ee7b7':'#fcd34d', isActive: isDvActive },
       { id:'folik', name:'Folik Asit', emoji:'🌸', color:'#ec4899',
         note:'Paz + Per · Sabah', noteColor:'#f9a8d4', isActive: isFolikActive },
     ];
     let html = '';
-    meds.forEach(med => {
-      let dayHeaders = '';
-      let cells = '';
-      for (let di=0; di<7; di++) {
-        const isT = di === todayIdx;
-        dayHeaders += `<th style="font-weight:${isT?700:400};color:${isT?'#a5b4fc':'#475569'};font-size:10px;padding:5px 3px">${DAYS[di]}</th>`;
-        const active = med.isActive(di);
-        cells += `<td style="text-align:center;padding:5px 3px">${active ? makeTakenBtn(med.id, di, med.color) : '<div class="inactive-cell">—</div>'}</td>`;
+    meds.forEach(m => {
+      let heads='', cells='';
+      for (let di=0;di<7;di++) {
+        const isT = di===todayIdx;
+        heads += `<th style="font-weight:${isT?700:400};color:${isT?'#a5b4fc':'#475569'};font-size:10px;padding:5px 3px">${DAYS[di]}</th>`;
+        cells += `<td style="text-align:center;padding:5px 3px">${m.isActive(di)?makeTakenBtn(m.id,di,m.color):'<div class="inactive-cell">—</div>'}</td>`;
       }
       html += `<div class="med-card">
-        <div class="med-card-header" style="background:linear-gradient(90deg,${med.color}10 0%,transparent 60%)">
-          <span style="font-size:18px;margin-top:1px">${med.emoji}</span>
-          <div><div class="med-card-name">${med.name}</div>
-          <div class="med-card-note" style="color:${med.noteColor}">${med.note}</div></div>
+        <div class="med-card-header" style="background:linear-gradient(90deg,${m.color}10 0%,transparent 60%)">
+          <span style="font-size:18px;margin-top:1px">${m.emoji}</span>
+          <div><div class="med-card-name">${m.name}</div>
+          <div class="med-card-note" style="color:${m.noteColor}">${m.note}</div></div>
         </div>
-        <div style="overflow-x:auto">
-          <table class="med-table">
-            <thead><tr><th style="text-align:left;padding-left:12px;color:#334155;width:50px">Sabah</th>${dayHeaders}</tr></thead>
-            <tbody><tr><td></td>${cells}</tr></tbody>
-          </table>
-        </div>
-      </div>`;
+        <div style="overflow-x:auto"><table class="med-table">
+          <thead><tr><th style="text-align:left;padding-left:12px;color:#334155;width:50px">Sabah</th>${heads}</tr></thead>
+          <tbody><tr><td></td>${cells}</tr></tbody>
+        </table></div></div>`;
     });
     document.getElementById('view-week').innerHTML = html;
   }
@@ -484,86 +329,77 @@
   // ── DAY VIEW ─────────────────────────────────────────────
   function renderDayView() {
     const di = activeDay;
-    function row(medId, name, emoji, color, active, doseLabel, doseNote) {
-      const t = isTaken(medId, di);
-      const rowBg = t ? `linear-gradient(90deg,${color}12 0%,rgba(255,255,255,0.03) 100%)` : active ? 'rgba(255,255,255,0.05)' : 'rgba(255,255,255,0.02)';
-      const rowBorder = t ? color+'44' : active ? 'rgba(255,255,255,0.09)' : 'rgba(255,255,255,0.04)';
+    function row(med, name, emoji, color, active, dose, note) {
+      const t = isTaken(med, di);
+      const bg = t?`linear-gradient(90deg,${color}12 0%,rgba(255,255,255,0.03) 100%)`:active?'rgba(255,255,255,0.05)':'rgba(255,255,255,0.02)';
+      const bdr = t?color+'44':active?'rgba(255,255,255,0.09)':'rgba(255,255,255,0.04)';
       const btn = active
-        ? `<div class="day-btn-wrap" id="dw_${medId}">
+        ? `<div class="day-btn-wrap" id="dw_${med}">
             <button class="day-btn${t?' taken':''}"
-              style="${t ? `background:${color};box-shadow:0 4px 18px ${color}55;` : ''}"
-              onclick="handleDayClick('${medId}',${di},'${color}')">${t?'✓':'○'}</button>
-           </div>`
-        : `<div class="day-inactive-placeholder">—</div>`;
-      return `<div class="day-row" style="background:${rowBg};border:1px solid ${rowBorder};opacity:${active?1:0.45}">
+              style="${t?`background:${color};box-shadow:0 4px 18px ${color}55;`:''}"
+              onclick="handleDayClick('${med}',${di},'${color}')">${t?'✓':'○'}</button></div>`
+        : `<div class="day-inactive-ph">—</div>`;
+      return `<div class="day-row" style="background:${bg};border:1px solid ${bdr};opacity:${active?1:0.45}">
         <span style="font-size:20px">${emoji}</span>
         <div style="flex:1">
           <div class="day-row-name" style="color:${t?'#e2e8f0':active?'#c4c4d4':'#64748b'}">${name}</div>
           <div class="day-row-meta">
-            <span class="dose-badge" style="background:${color}22;color:${color}">${doseLabel}</span>
-            <span class="dose-note${t?' taken-note':''}">${t?'✓ Alındı':doseNote}</span>
+            <span class="dose-badge" style="background:${color}22;color:${color}">${dose}</span>
+            <span class="dose-note${t?' taken-note':''}">${t?'✓ Alındı':note}</span>
           </div>
-        </div>${btn}
-      </div>`;
+        </div>${btn}</div>`;
     }
     let html = `<div style="font-size:12px;color:#64748b;margin-bottom:10px">${FULL_DAYS[di]} — Sabah dozları</div>`;
-    html += row('dv','D Vitamini','☀️','#eab308', isDvActive(di), dvDose, after6weeks?'İdame dozu':`${daysLeft}g sonra 1 puf'a geç`);
-    html += row('folik','Folik Asit','🌸','#ec4899', isFolikActive(di), '1 tablet', isFolikActive(di)?'Bugün alınacak':'Bugün yok');
+    html += row('dv','D Vitamini','☀️','#eab308',isDvActive(di),dvDose,after6weeks?'İdame dozu':`${daysLeft}g sonra 1 puf'a geç`);
+    html += row('folik','Folik Asit','🌸','#ec4899',isFolikActive(di),'1 tablet',isFolikActive(di)?'Bugün alınacak':'Bugün yok');
     document.getElementById('view-day').innerHTML = html;
   }
 
   // ── DAY TABS ─────────────────────────────────────────────
   function renderDayTabs() {
-    let html = '';
-    for (let i=0; i<7; i++) {
-      const { total, done } = totalForDay(i);
-      const pct = total > 0 ? done/total : 0;
-      const isT = i===todayIdx, isA = i===activeDay;
-      const bar = total > 0 ? `<div class="tab-bar"><div class="tab-bar-fill${pct===1?' complete':''}" style="width:${pct*100}%"></div></div>` : '';
-      html += `<button class="day-tab${isA?' active':''}${isT?' today':''}" onclick="setActiveDay(${i})">
-        <span>${DAYS[i]}</span>${bar}
-      </button>`;
+    let html='';
+    for (let i=0;i<7;i++) {
+      const {total,done} = totalForDay(i);
+      const pct = total>0?done/total:0;
+      const isT=i===todayIdx, isA=i===activeDay;
+      const bar = total>0?`<div class="tab-bar"><div class="tab-bar-fill${pct===1?' complete':''}" style="width:${pct*100}%"></div></div>`:'';
+      html += `<button class="day-tab${isA?' active':''}${isT?' today':''}" onclick="setActiveDay(${i})"><span>${DAYS[i]}</span>${bar}</button>`;
     }
     document.getElementById('day-tabs').innerHTML = html;
   }
 
   // ── SUMMARY ──────────────────────────────────────────────
   function renderSummary() {
-    const { total, done } = totalForDay(activeDay);
-    const pct = total > 0 ? done/total : 0;
+    const {total,done} = totalForDay(activeDay);
+    const pct = total>0?done/total:0;
     document.getElementById('summary-dayname').textContent = FULL_DAYS[activeDay];
     document.getElementById('summary-count').textContent   = `${done}/${total}`;
-    const color = pct===1 ? '#22c55e' : '#6366f1';
-    document.getElementById('summary-circle').style.background =
-      `conic-gradient(${color} 0deg,${color} ${pct*360}deg,rgba(255,255,255,0.08) ${pct*360}deg 360deg)`;
-    document.getElementById('summary-pct').textContent  = total>0 ? Math.round(pct*100)+'%' : '0%';
-    document.getElementById('summary-pct').style.color  = pct===1 ? '#4ade80' : '#a5b4fc';
+    const c = pct===1?'#22c55e':'#6366f1';
+    document.getElementById('summary-circle').style.background = `conic-gradient(${c} 0deg,${c} ${pct*360}deg,rgba(255,255,255,0.08) ${pct*360}deg 360deg)`;
+    document.getElementById('summary-pct').textContent = total>0?Math.round(pct*100)+'%':'0%';
+    document.getElementById('summary-pct').style.color = pct===1?'#4ade80':'#a5b4fc';
   }
 
-  // ── INFO CARD ────────────────────────────────────────────
+  // ── INFO ─────────────────────────────────────────────────
   function renderInfo() {
     document.getElementById('info-card').innerHTML = `
       <div class="info-label">BİLGİ</div>
-      <div class="info-row"><span style="font-size:14px">☀️</span><div><span class="info-row-key" style="color:#eab308">D Vitamini: </span><span class="info-row-val">${after6weeks?'Günde 1 puf — idame dozu':`İlk 6 hafta: 3 puf/gün • ${daysLeft}g kaldı`}</span></div></div>
-      <div class="info-row"><span style="font-size:14px">🌸</span><div><span class="info-row-key" style="color:#ec4899">Folik Asit: </span><span class="info-row-val">Haftada 2 gün (Paz + Per) — günde 1 tablet</span></div></div>
-      <div class="info-row"><span style="font-size:14px">📅</span><div><span class="info-row-key" style="color:#6366f1">6. Hafta Sonu: </span><span class="info-row-val">5 Temmuz 2026 — D vitamini dozunu düşür</span></div></div>
-    `;
+      <div class="info-row"><span style="font-size:14px">☀️</span><div><span style="font-weight:700;color:#eab308">D Vitamini: </span><span style="color:#64748b">${after6weeks?'Günde 1 puf — idame dozu':`İlk 6 hafta: 3 puf/gün • ${daysLeft}g kaldı`}</span></div></div>
+      <div class="info-row"><span style="font-size:14px">🌸</span><div><span style="font-weight:700;color:#ec4899">Folik Asit: </span><span style="color:#64748b">Haftada 2 gün (Paz + Per) — günde 1 tablet</span></div></div>
+      <div class="info-row"><span style="font-size:14px">📅</span><div><span style="font-weight:700;color:#6366f1">6. Hafta Sonu: </span><span style="color:#64748b">5 Temmuz 2026 — D vitamini dozunu düşür</span></div></div>`;
   }
 
   // ── BADGE ────────────────────────────────────────────────
   function renderBadge() {
     const el = document.getElementById('week6-badge');
-    el.style.color = after6weeks ? '#6ee7b7' : '#fcd34d';
-    el.textContent = after6weeks ? '✅ 6. hafta geçildi' : `⏳ 6. haftaya ${daysLeft}g`;
+    el.style.color = after6weeks?'#6ee7b7':'#fcd34d';
+    el.textContent = after6weeks?'✅ 6. hafta geçildi':`⏳ 6. haftaya ${daysLeft}g`;
   }
 
-  // ── MAIN RENDER ──────────────────────────────────────────
+  // ── RENDER ───────────────────────────────────────────────
   function render() {
-    renderBadge();
-    renderDayTabs();
-    renderSummary();
-    if (currentView === 'week') renderWeekView();
-    else renderDayView();
+    renderBadge(); renderDayTabs(); renderSummary();
+    currentView==='week' ? renderWeekView() : renderDayView();
     renderInfo();
   }
 
@@ -572,15 +408,21 @@
     currentView = v;
     document.getElementById('view-week').style.display = v==='week'?'':'none';
     document.getElementById('view-day').style.display  = v==='day' ?'':'none';
-    document.getElementById('btn-week').classList.toggle('active', v==='week');
-    document.getElementById('btn-day').classList.toggle('active',  v==='day');
+    document.getElementById('btn-week').classList.toggle('active',v==='week');
+    document.getElementById('btn-day').classList.toggle('active',v==='day');
     render();
   };
-  window.setActiveDay = function(i) { activeDay = i; render(); };
+  window.setActiveDay = function(i) { activeDay=i; render(); };
+
+  // ── AUTO REFRESH (her 30 sn'de veriyi çek) ──────────────
+  setInterval(async () => {
+    await loadData();
+    render();
+  }, 30000);
 
   // ── INIT ─────────────────────────────────────────────────
   (async function() {
-    await loadFromGitHub();
+    await loadData();
     document.getElementById('loading-screen').style.display = 'none';
     renderBanners();
     render();
