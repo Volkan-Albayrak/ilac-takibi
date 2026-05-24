@@ -252,8 +252,8 @@
 <script>
   const DAYS = ["Pzt","Sal","Çar","Per","Cum","Cmt","Paz"];
   const FULL_DAYS = ["Pazartesi","Salı","Çarşamba","Perşembe","Cuma","Cumartesi","Pazar"];
-  const START_DATE = new Date("2026-05-24");
-  const WEEK6_END = new Date("2026-07-05");
+  const START_DATE = new Date("2026-05-24T00:00:00");
+  const WEEK6_END = new Date("2026-07-05T23:59:59");
   const FOLIK_DAYS = [6, 3]; // Paz=6, Per=3
 
   // --- STATE from localStorage ---
@@ -301,9 +301,9 @@
   let currentView = "week";
 
   // --- ACTIVE CHECKS ---
-  function isDvActive(di) { return getDateForDayIdx(di) >= START_DATE; }
+  function isDvActive(di) { return getDateStr(di) >= "2026-05-24"; }
   function isFolikActive(di) {
-    if (getDateForDayIdx(di) < START_DATE) return false;
+    if (getDateStr(di) < "2026-05-24") return false;
     return FOLIK_DAYS.includes(di);
   }
 
